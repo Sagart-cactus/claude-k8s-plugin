@@ -1,0 +1,13 @@
+{
+  "name": "k8s-operator",
+  "version": "0.1.0",
+  "description": "Guided Kubernetes operator creator with CRD, webhook, and Tilt fast dev loop.",
+  "author": {
+    "name": "Trivedi"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/Sagart-cactus/claude-k8s-plugin",
+  "repository": "https://github.com/Sagart-cactus/claude-k8s-plugin",
+  "commands": "./commands",
+  "skills": "./skills"
+}

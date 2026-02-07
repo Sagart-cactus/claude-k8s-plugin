@@ -1,0 +1,4 @@
+kubeconfig-*
+bin/
+.tiltbuild/
+.DS_Store

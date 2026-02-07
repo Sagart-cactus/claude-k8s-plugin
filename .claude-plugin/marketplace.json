@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-marketplace.json",
+  "name": "sagart-devtools",
+  "metadata": {
+    "description": "Developer productivity plugins and workflows by Sagart-cactus for Claude Code."
+  },
+  "owner": {
+    "name": "Sagart-cactus"
+  },
+  "plugins": [
+    {
+      "name": "k8s-operator",
+      "source": "./"
+    }
+  ]
+}
