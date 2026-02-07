@@ -61,15 +61,15 @@ In `api/v1/<kind>_webhook.go`:
 
 ## Step 6: Deploy and Validate
 
-1. Ensure kind cluster exists: `/k8s-operator:create-cluster`
-2. Deploy: `/k8s-operator:deploy`
-3. Verify: `/k8s-operator:verify`
+1. Ensure kind cluster exists: `/k8s:create-cluster`
+2. Deploy: `/k8s:deploy`
+3. Verify: `/k8s:verify`
 4. Create a sample CR and verify the controller reconciles it
 5. Test webhook by submitting an invalid CR (should be rejected)
 
 ## Step 7: Quality Check
 
-Run `/k8s-operator:checklist` to verify all safety, CRD, webhook, RBAC, and dev loop items pass.
+Run `/k8s:checklist` to verify all safety, CRD, webhook, RBAC, and dev loop items pass.
 
 ## Output Expectations
 

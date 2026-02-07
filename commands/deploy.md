@@ -6,4 +6,4 @@ Run `${CLAUDE_PLUGIN_ROOT}/scripts/deploy-dev.sh ${ARGUMENTS:-config/dev}`.
 
 This builds and applies the Kustomize overlay to the current kind cluster. It will refuse to deploy to non-kind contexts.
 
-Example: `/k8s-operator:deploy` or `/k8s-operator:deploy config/staging`
+Example: `/k8s:deploy` or `/k8s:deploy config/staging`

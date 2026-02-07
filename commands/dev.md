@@ -10,7 +10,7 @@ This starts the Tilt fast dev loop which:
 4. Restarts the manager process on code changes
 
 Prerequisites:
-- A kind cluster must be running (`/k8s-operator:create-cluster`)
+- A kind cluster must be running (`/k8s:create-cluster`)
 - A `Tiltfile` must exist in the project root (use the `k8s-templates` skill for a starter)
 - The Kustomize dev overlay must be configured (`config/dev/`)
 

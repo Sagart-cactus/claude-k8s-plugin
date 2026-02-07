@@ -1,5 +1,5 @@
 ---
-name: k8s-operator-workflow
+name: k8s-workflow
 description: Agent contract and fast dev loop for K8s operator development
 ---
 

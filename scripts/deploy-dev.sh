@@ -12,7 +12,7 @@ if [[ ! "$CONTEXT" =~ ^kind- ]]; then
 fi
 
 if ! command -v kustomize >/dev/null 2>&1; then
-  echo "kustomize is not installed. Run /k8s-operator:prereqs first." >&2
+  echo "kustomize is not installed. Run /k8s:prereqs first." >&2
   exit 1
 fi
 

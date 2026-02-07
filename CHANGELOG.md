@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.1
+
+### Changed
+- Renamed plugin command namespace from `k8s-operator` to `k8s`
+- Updated install command reference to `claude plugin install k8s@sagart-devtools`
+- Renamed workflow skill identifier from `k8s-operator-workflow` to `k8s-workflow`
+
 ## v0.1.0
 
 Initial release.
@@ -14,7 +21,7 @@ Initial release.
 - `checklist`: Quality and safety evaluation checklist
 
 ### Skills
-- `k8s-operator-workflow`: Agent contract, Q&A requirements, dev loop workflow
+- `k8s-workflow`: Agent contract, Q&A requirements, dev loop workflow
 - `k8s-crd-design`: CRD schema, webhook, RBAC, and reconcile loop patterns
 - `k8s-templates`: Tiltfile, Makefile, and Kustomize dev overlay templates
 - `k8s-quality-checklist`: Safety, CRD, webhook, RBAC, and dev loop checklists

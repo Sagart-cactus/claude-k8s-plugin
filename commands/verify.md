@@ -6,4 +6,4 @@ Run `${CLAUDE_PLUGIN_ROOT}/scripts/verify-dev.sh ${ARGUMENTS:-system}`.
 
 This shows the current state of your operator deployment: CRDs, pods, webhook configurations, and recent events.
 
-Example: `/k8s-operator:verify` or `/k8s-operator:verify my-operator-system`
+Example: `/k8s:verify` or `/k8s:verify my-operator-system`
