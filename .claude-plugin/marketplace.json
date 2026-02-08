@@ -9,7 +9,7 @@
   },
   "plugins": [
     {
-      "name": "k8s-operator",
+      "name": "k8s",
       "source": "./"
     }
   ]
