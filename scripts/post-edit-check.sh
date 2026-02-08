@@ -16,36 +16,29 @@ fi
 
 [ -z "$FILE_PATH" ] && exit 0
 
-# Check if the edited file matches k8s patterns
+# Check if the edited file matches k8s patterns and output JSON for visibility
+# (plain stdout is hidden for PostToolUse hooks; additionalContext is surfaced to Claude)
+MSG=""
 case "$FILE_PATH" in
   */config/*)
-    echo "Kustomize/config change detected. Consider running:"
-    echo "  /k8s:deploy   - Apply changes to kind cluster"
-    echo "  /k8s:verify   - Check CRDs, pods, and webhooks"
+    MSG="Kustomize/config change detected. Run: /k8s:deploy (apply to kind) then /k8s:verify (check CRDs, pods, webhooks)"
     ;;
   *_types.go)
-    echo "CRD types changed. Consider running:"
-    echo "  make generate && make manifests  - Regenerate CRD manifests"
-    echo "  /k8s:deploy             - Apply to kind cluster"
-    echo "  /k8s:verify             - Verify CRDs are updated"
+    MSG="CRD types changed. Run: make generate && make manifests, then /k8s:deploy and /k8s:verify"
     ;;
   *_webhook.go)
-    echo "Webhook code changed. Consider running:"
-    echo "  /k8s:deploy   - Redeploy to kind cluster"
-    echo "  /k8s:verify   - Check webhook configurations"
+    MSG="Webhook code changed. Run: /k8s:deploy (redeploy) then /k8s:verify (check webhook configs)"
     ;;
   *_controller.go|*_reconciler.go)
-    echo "Controller code changed. Consider running:"
-    echo "  /k8s:dev      - Start/restart Tilt dev loop"
-    echo "  /k8s:verify   - Check pod status and events"
+    MSG="Controller code changed. Run: /k8s:dev (start/restart Tilt) then /k8s:verify (check pods and events)"
     ;;
   *Tiltfile*|*Makefile*)
-    echo "Build config changed. Consider running:"
-    echo "  /k8s:dev      - Restart Tilt dev loop"
-    ;;
-  *)
-    # Not a k8s-related file, no suggestion
+    MSG="Build config changed. Run: /k8s:dev (restart Tilt dev loop)"
     ;;
 esac
+
+if [ -n "$MSG" ]; then
+  printf '{"additionalContext": "%s"}\n' "$MSG"
+fi
 
 exit 0
