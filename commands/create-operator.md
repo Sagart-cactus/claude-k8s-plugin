@@ -57,15 +57,32 @@ In `api/v1/<kind>_webhook.go`:
 
 1. Create the Kustomize dev overlay (`config/dev/`) — refer to the `k8s-templates` skill.
 2. Create a `Tiltfile` — refer to the `k8s-templates` skill.
-3. Add `make dev` target to the Makefile.
+3. Create a dev `Dockerfile` — refer to the `k8s-templates` skill.
+4. Add `make dev` target to the Makefile.
 
-## Step 6: Deploy and Validate
+## Step 6: Deploy with Tilt
+
+**Default to Tilt for all build/deploy cycles.** Run `tilt up` (or `make dev`) — it handles image build, kind load, kustomize apply, and live-update automatically.
 
 1. Ensure kind cluster exists: `/k8s:create-cluster`
-2. Deploy: `/k8s:deploy`
-3. Verify: `/k8s:verify`
-4. Create a sample CR and verify the controller reconciles it
-5. Test webhook by submitting an invalid CR (should be rejected)
+2. Start Tilt: `tilt up` (or `make dev`). Tilt will:
+   - Build the Go binary locally
+   - Build the Docker image and load it into kind
+   - Apply all Kustomize manifests (CRDs, RBAC, webhooks, deployment)
+   - Live-update the binary on code changes
+3. Wait for Tilt to report all resources healthy
+4. Verify: `/k8s:verify`
+5. Create a sample CR and verify the controller reconciles it
+6. Test webhook by submitting an invalid CR (should be rejected)
+
+### When to fall back to manual build/deploy
+
+Tilt live-update only syncs the compiled binary. Use manual `docker build` + `kind load` + `kustomize build | kubectl apply` (or `/k8s:deploy`) when:
+- CRD schema changed (`make manifests` needed, then re-apply CRDs)
+- Dockerfile changed
+- Base image changed
+- Go dependencies changed that affect the container environment
+- Tilt is not running or not recovering from an error
 
 ## Step 7: Quality Check
 

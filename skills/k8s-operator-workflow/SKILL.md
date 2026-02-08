@@ -38,10 +38,12 @@ Always ask these 10 questions and wait for answers:
 
 ## Dev Fast Loop Workflow
 
+**Default to Tilt (`tilt up` or `make dev`) for all build and deploy cycles.** Do not manually run `docker build`, `kind load`, or `kustomize build | kubectl apply` unless Tilt live-update cannot handle the change.
+
 ### Overview
 
 - One command: `make dev` (wraps `tilt up`)
-- Kustomize applies CRDs, RBAC, webhook config, and manager Deployment
+- Tilt builds the Docker image, loads it into kind, and applies Kustomize manifests
 - Local `go build` produces the manager binary
 - Tilt live-update syncs the binary into the running manager pod
 - Tilt kills the process to restart with new code
@@ -54,11 +56,13 @@ Always ask these 10 questions and wait for answers:
 4. Process restarts
 5. Check logs/events for feedback
 
-### When You Need a Full Rebuild
+### Fall Back to Manual Build/Deploy When
 
-- Dockerfile changes
-- Base image changes
-- Dependency changes that affect the image environment
+Tilt live-update only syncs the compiled binary. Use manual `docker build` + `kind load` + `kubectl apply` when:
+- CRD schema changed (`make manifests` needed, then re-apply CRDs)
+- Dockerfile or base image changed
+- Go dependencies changed that affect the container environment
+- Tilt is not running or not recovering from an error
 
 ## Files the Agent Should Manage
 
