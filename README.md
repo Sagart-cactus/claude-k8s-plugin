@@ -4,6 +4,10 @@ A Claude Code plugin for building Kubernetes CRD operators with webhooks and a f
 
 This plugin guides you through the entire operator lifecycle: requirements gathering, scaffolding with Kubebuilder, implementing controllers and webhooks, setting up a fast dev loop with Tilt, and validating your deployment — all within Claude Code.
 
+<p align="center">
+  <img src="assets/demo.gif" alt="Claude K8s Plugin demo" />
+</p>
+
 ## Installation
 
 ```bash
